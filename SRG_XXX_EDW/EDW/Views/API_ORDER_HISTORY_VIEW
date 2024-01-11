@@ -12,23 +12,24 @@ FROM EDW.API_ORDER_HISTORY_VIEW;
 
 Version History
 2024-01-11  Raymond Zhao    copy from prod
+2024-01-11  Raymond Zhao    rename columns as per API
 *****************************************************************/
-create or replace view SRG_PRD_EDW.EDW.API_ORDER_HISTORY_VIEW(
-	CALENDARDAY,
-	TRANSACTIONDATE,
-	POSDOCKETNO,
-	TRANSACTIONINDICATOR,
+create or replace view EDW.API_ORDER_HISTORY_VIEW(
 	CUSTOMER,
-	SALESORG,
-	NETAMOUNT,
-	QUANTITY
-) as
-select CALENDARDAY
-      ,TRANSACTIONDATE
-      ,POSDOCKETNO
-      ,TRANSACTIONINDICATOR
-      ,CUSTOMER
-      ,SALESORG
-      ,NETAMOUNT
-      ,QUANTITY
+	SALES_ORG,
+    ORDER_DATE, -- can we rename it to ORDER_DATETIME
+	ORDER_NO,
+	ORDER_TYPE,
+	ORDER_TOTAL,
+	ITEM_COUNT
+) 
+as
+select 
+	CUSTOMER,
+	SALES_ORG,
+    ORDER_DATE, -- can we rename it to ORDER_DATETIME
+	ORDER_NO,
+	ORDER_TYPE,
+	ORDER_TOTAL,
+	ITEM_COUNT
 FROM edw.api_order_history_dyntbl;
