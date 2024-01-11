@@ -1,0 +1,34 @@
+/*****************************************************************
+Name:
+    SRG_DEV_EDW.EDW.API_ORDER_HISTORY_VIEW
+
+Description:
+    A dynamic view created dedicated for order history API
+
+
+Sample syntax:
+SELECT top 100 *
+FROM EDW.API_ORDER_HISTORY_VIEW;
+
+Version History
+2024-01-11  Raymond Zhao    copy from prod
+*****************************************************************/
+create or replace view SRG_PRD_EDW.EDW.API_ORDER_HISTORY_VIEW(
+	CALENDARDAY,
+	TRANSACTIONDATE,
+	POSDOCKETNO,
+	TRANSACTIONINDICATOR,
+	CUSTOMER,
+	SALESORG,
+	NETAMOUNT,
+	QUANTITY
+) as
+select CALENDARDAY
+      ,TRANSACTIONDATE
+      ,POSDOCKETNO
+      ,TRANSACTIONINDICATOR
+      ,CUSTOMER
+      ,SALESORG
+      ,NETAMOUNT
+      ,QUANTITY
+FROM edw.api_order_history_dyntbl;
